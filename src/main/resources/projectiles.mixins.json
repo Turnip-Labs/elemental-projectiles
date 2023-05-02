@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "turniplabs.projectiles.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "ItemBowMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
