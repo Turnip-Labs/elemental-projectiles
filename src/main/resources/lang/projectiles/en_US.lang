@@ -9,7 +9,4 @@ item.projectiles.ammo.arrow.sulphur.desc=A dynamic-headed projectile for explodi
 item.projectiles.ammo.arrow.diamond.name=Lightning Arrow
 item.projectiles.ammo.arrow.diamond.desc=A diamond-headed projectile that summons lightning.
 item.projectiles.ammo.arrow.teleport.name=Portal Arrow
-item.projectiles.ammo.arrow.teleport.desc=An interdimensional-gate shaped projectile that swaps targets.
-
-item.projectiles.tool.bow.golden.name=Golden Bow
-item.projectiles.tool.bow.golden.desc=A tool for shooting piercing arrows.
+item.projectiles.ammo.arrow.teleport.desc=An interdimensional-gate shaped projectile that swaps targets. Does not damage anything!
