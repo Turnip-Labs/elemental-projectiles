@@ -23,6 +23,14 @@ repositories {
 		name = 'Fabric'
 		url = 'https://maven.fabricmc.net/'
 	}
+	maven {
+		name = "Nova Committee - Release"
+		url = uri("https://maven.nova-committee.cn/releases/")
+	}
+	maven {
+		name = "Nova Committee - Snapshot"
+		url = uri("https://maven.nova-committee.cn/snapshots/")
+	}
 	ivy {
 		url = "https://github.com/Better-than-Adventure"
 		patternLayout {
@@ -66,6 +74,10 @@ dependencies {
 	modImplementation("net.fabricmc:fabric-language-kotlin:${project.flk_version}+kotlin.${project.kotlin_version}") {
     	exclude(group: "net.fabricmc", module: "fabric-loader")
 	}
+
+	// Prism Config for Item IDs
+	include("io.github.prismwork:prismconfig:0.2.0:all")
+	modImplementation("io.github.prismwork:prismconfig:0.2.0:all")
 }
 
 java {

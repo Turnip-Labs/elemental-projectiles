@@ -1,5 +1,8 @@
 package turniplabs.projectiles
 
+import io.github.prismwork.prismconfig.api.PrismConfig
+import io.github.prismwork.prismconfig.api.config.DefaultSerializers
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.src.Block
 import net.minecraft.src.Item
 import org.slf4j.Logger
@@ -7,26 +10,32 @@ import org.slf4j.LoggerFactory
 import turniplabs.halplibe.helper.ItemHelper
 import turniplabs.halplibe.helper.RecipeHelper
 import turniplabs.projectiles.item.*
+import java.io.File
 
 const val MOD_ID: String = "projectiles"
 val LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
+var CONFIG: ProjectilesConfig.Config = ProjectilesConfig.Config()
 
-var ItemID = 1100
+val CONFIG_FILE: File = FabricLoader.getInstance().configDir.resolve("ElementalProjectiles.json5").toFile()
 
-fun nextID(): Int {
-    return ItemID++
-}
+private val PROJECTILES_CONFIG: ProjectilesConfig.Config = PrismConfig.getInstance().serialize(
+    ProjectilesConfig.Config::class.java,
+    CONFIG_FILE,
+    DefaultSerializers.getInstance().json5(ProjectilesConfig.Config::class.java)
+)
 
-val ARROW_EGG: Item = ItemHelper.createItem(MOD_ID, ItemArrowEgg(nextID()), "ammo.arrow.egg", "arrow_egg.png");
-val ARROW_FIRE: Item = ItemHelper.createItem(MOD_ID, ItemArrowFire(nextID()), "ammo.arrow.fire", "arrow_coal.png")
-val ARROW_ICE: Item = ItemHelper.createItem(MOD_ID, ItemArrowIce(nextID()), "ammo.arrow.ice", "arrow_ice.png")
-val ARROW_SULPHUR: Item = ItemHelper.createItem(MOD_ID, ItemArrowExplosive(nextID()), "ammo.arrow.sulphur", "arrow_sulphur.png")
-val ARROW_LIGHTNING: Item = ItemHelper.createItem(MOD_ID, ItemArrowLightning(nextID()), "ammo.arrow.diamond", "arrow_diamond.png")
-val ARROW_TELEPORT: Item = ItemHelper.createItem(MOD_ID, ItemArrowTeleport(nextID()), "ammo.arrow.teleport", "arrow_teleport.png")
+val ARROW_EGG: Item = ItemHelper.createItem(MOD_ID, ItemArrowEgg(PROJECTILES_CONFIG.eggArrow), "ammo.arrow.egg", "arrow_egg.png")
+val ARROW_FIRE: Item = ItemHelper.createItem(MOD_ID, ItemArrowFire(PROJECTILES_CONFIG.fireArrow), "ammo.arrow.fire", "arrow_coal.png")
+val ARROW_ICE: Item = ItemHelper.createItem(MOD_ID, ItemArrowIce(PROJECTILES_CONFIG.iceArrow), "ammo.arrow.ice", "arrow_ice.png")
+val ARROW_SULPHUR: Item = ItemHelper.createItem(MOD_ID, ItemArrowExplosive(PROJECTILES_CONFIG.explosiveArrow), "ammo.arrow.sulphur", "arrow_sulphur.png")
+val ARROW_LIGHTNING: Item = ItemHelper.createItem(MOD_ID, ItemArrowLightning(PROJECTILES_CONFIG.lightningArrow), "ammo.arrow.diamond", "arrow_diamond.png")
+val ARROW_TELEPORT: Item = ItemHelper.createItem(MOD_ID, ItemArrowTeleport(PROJECTILES_CONFIG.teleportArrow), "ammo.arrow.teleport", "arrow_teleport.png")
 
 @Suppress("unused")
 fun init() {
-    LOGGER.info("Elemental Projectiles initialized. Have fun!")
+    LOGGER.info("Elemental Projectiles has been initialized. Have fun!")
+
+    CONFIG = ProjectilesConfig.load(CONFIG_FILE)
 
     // Recipes
     RecipeHelper.Crafting.createRecipe(
