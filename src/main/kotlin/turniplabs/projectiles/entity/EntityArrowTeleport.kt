@@ -3,10 +3,12 @@ package turniplabs.projectiles.entity
 import net.minecraft.src.*
 import net.minecraft.src.helper.DamageType
 
+// Never shot out of a dispenser for obvious reasons, so we don't need the second or third constructor
 class EntityArrowTeleport(world: World?, entityLiving: EntityLiving?, doesArrowBelongToPlayer: Boolean, arrowType: Int) :
     EntityArrow(world, entityLiving, doesArrowBelongToPlayer, arrowType) {
 
-        // Sets damage and noclip to 0 so it's more reliable, and so the player doesn't take damage from own arrow
+        // Sets no-clip to true and damage to 0, so it's more reliable
+        // Also so the player doesn't take damage from their own arrow
         init {
             this.noClip = true
             this.arrowDamage = 0
@@ -14,7 +16,7 @@ class EntityArrowTeleport(world: World?, entityLiving: EntityLiving?, doesArrowB
 
     override fun inGroundAction() {
         super.inGroundAction()
-        kill()
+        setEntityDead()
     }
 
     override fun onUpdate() {

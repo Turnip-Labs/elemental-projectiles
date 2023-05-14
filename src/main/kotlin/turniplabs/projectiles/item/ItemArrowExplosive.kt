@@ -9,7 +9,9 @@ class ItemArrowExplosive(i: Int): ItemElementalArrow(i) {
         val world = Minecraft.getMinecraft().theWorld
         val player = Minecraft.getMinecraft().thePlayer
 
-        if (!world.isMultiplayerAndNotHost)
+        if (!world.isMultiplayerAndNotHost) {
+            world.playSoundAtEntity(player, "random.fuse", 1.0f, 1.0f)
             world.entityJoinedWorld(EntityArrowExplosive(world, player, true, 0))
+        }
     }
 }

@@ -10,3 +10,15 @@ item.projectiles.ammo.arrow.diamond.name=Lightning Arrow
 item.projectiles.ammo.arrow.diamond.desc=A diamond-headed projectile that summons lightning.
 item.projectiles.ammo.arrow.teleport.name=Portal Arrow
 item.projectiles.ammo.arrow.teleport.desc=An interdimensional-gate shaped projectile that swaps targets. Does not damage anything!
+
+item.projectiles.ammo.charge.egg.name=Egg-Splosive Charge
+item.projectiles.ammo.charge.egg.desc=Ammo for a hand cannon. Packed with... an egg?
+item.projectiles.ammo.charge.ice.name=Ice Charge
+item.projectiles.ammo.charge.ice.desc=Ammo for a hand cannon. Frozen in ice.
+item.projectiles.ammo.charge.tnt.name=TNT Charge
+item.projectiles.ammo.charge.tnt.desc=Ammo for the hand cannon. For when you don't have enough power.
+item.projectiles.ammo.charge.diamond.name=Lightning Charge
+item.projectiles.ammo.charge.diamond.desc=Ammo for a hand cannon. Packed with a diamond.
+
+item.projectiles.handcannon.loaded.name=Loaded Hand Cannon
+item.projectiles.handcannon.loaded.desc=Armed and ready!

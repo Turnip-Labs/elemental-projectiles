@@ -1,9 +1,6 @@
 package turniplabs.projectiles.mixin;
 
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.ItemBow;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
+import net.minecraft.src.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,13 +18,13 @@ public abstract class ItemBowMixin {
     private final Random mixinRand = new Random();
 
     @Inject(method = "onItemRightClick", at = @At("TAIL"))
-    private void projectiles_RightClick(ItemStack itemstack, World world, EntityPlayer entityplayer, CallbackInfoReturnable<ItemStack> cir) {
-        for (ItemElementalArrow itemArrows : arrowTypes) {
+    private void projectiles_RightClickBow(ItemStack itemstack, World world, EntityPlayer entityplayer, CallbackInfoReturnable<ItemStack> cir) {
+        if (entityplayer.inventory.consumeInventoryItem(Item.ammoArrow.itemID)) return;
+        for (ItemElementalArrow itemArrows : arrowTypes)
             if (entityplayer.inventory.consumeInventoryItem(itemArrows.itemID)) {
                 world.playSoundAtEntity(entityplayer, "random.bow", 1.0f, 1.0f / (mixinRand.nextFloat() * 0.4f + 0.8f));
                 itemArrows.shootArrow();
                 break;
             }
-        }
     }
 }
